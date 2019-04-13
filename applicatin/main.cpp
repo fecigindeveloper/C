@@ -9,15 +9,14 @@ int main(int args, char argv[] ) {
   char *msgError = 0;
   int rc;
   
-  rc = sqlite3_open("test.db", &db);
+  OepnData = sqlite3_open("test.db", &db);
   
-  if( rc ) {  //jika database tidak bisa dibuka maka akan keluar error sqlite3 
+  if( OepnData ) {  //jika database tidak bisa dibuka maka akan keluar error sqlite3 
     fprintf(stderr, "database tidak dapat dibuka  ", sqlite3_errmsg(db));
     return(0);
   } else { //jika database berhasil dibuka maka akan ada pesan open successfully
     fprintf(stderr, "Opened database successfully\n");
   }
-  sqlite3_close(db);
   //code open database selesai
   
   //code create table
@@ -29,10 +28,14 @@ int main(int args, char argv[] ) {
   );";
   
   /*Execute SQL statement */
-  rc = sqlite3_exec(db, sql, callback, 0, &msgError);
+  exeSQL = sqlite3_exec(db, sql, callback, 0, &msgError);
   
-  if(rc != SQLITE_OK) {
+  if(exeSQL != SQLITE_OK) {
     fprintf(stderr, "SQL error %s ",msgError);
-  }
     
+  } else {
+    fprintf(stderr, "table berhasil dibuat");
+  }
+  sqlite3_close(db);
+  return 0;
 }
