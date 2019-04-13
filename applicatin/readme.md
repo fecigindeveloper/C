@@ -1,2 +1,2 @@
 refrense
-![link](https://www.geeksforgeeks.org/sorting-algorithms/)
+[GeeksforGeeks](https://www.geeksforgeeks.org/sorting-algorithms/)
